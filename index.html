@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greens Deals</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -17,6 +18,11 @@
             color: white;
             padding: 10px 0;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         header .logo h1 {
@@ -26,66 +32,190 @@
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
         }
 
         nav ul li {
-            display: inline;
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #005f00;
         }
 
         .hero {
             background: url('hero.jpg') no-repeat center center/cover;
-            color: white;
+            color: black;
             padding: 100px 20px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            max-width: 600px;
+            margin-bottom: 20px;
         }
 
         .hero button {
             background-color: #008000;
             border: none;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
+            font-size: 1.2em;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .hero button:hover {
             background-color: #005f00;
         }
 
+        main {
+            padding-top: 120px; /* Adjust for fixed header */
+        }
+
         section {
-            padding: 20px;
+            padding: 80px 20px;
             text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
         }
 
         .deals-grid {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         .deal-item {
             background-color: white;
             border: 1px solid #ddd;
-            margin: 10px;
-            padding: 10px;
-            width: calc(33% - 20px);
+            margin: 15px;
+            padding: 20px;
+            width: calc(30% - 30px);
             box-sizing: border-box;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .deal-item img {
             max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .deal-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .deal-item p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #008000;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #005f00;
         }
 
         footer {
             background-color: #008000;
             color: white;
             text-align: center;
-            padding: 10px 0;
+            padding: 30px 0;
+        }
+
+        @media (max-width: 768px) {
+            .deal-item {
+                width: calc(50% - 30px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .deal-item {
+                width: 100%;
+            }
+
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
@@ -114,42 +244,51 @@
         </section>
 
         <section id="about">
-            <h2>About Us</h2>
-            <p>At Greens Deals, we believe in providing the best value for your money. We offer a wide range of products at unbeatable prices. From electronics to clothing, we've got you covered.</p>
+            <div class="container">
+                <h2 class="section-title">About Us</h2>
+                <div class="about-text">
+                    <p>At Greens Deals, we are passionate about bringing you the best deals on a variety of products. From electronics to fashion, we strive to offer unbeatable prices and outstanding customer service.</p>
+                    <p>Explore our website to discover the latest offers and discounts that suit your needs.</p>
+                </div>
+            </div>
         </section>
 
         <section id="deals">
-            <h2>Our Best Deals</h2>
-            <div class="deals-grid">
-                <div class="deal-item">
-                    <img src="deal1.jpg" alt="Deal 1">
-                    <h3>Product 1</h3>
-                    <p>Discounted Price: $10</p>
-                </div>
-                <div class="deal-item">
-                    <img src="deal2.jpg" alt="Deal 2">
-                    <h3>Product 2</h3>
-                    <p>Discounted Price: $20</p>
-                </div>
-                <div class="deal-item">
-                    <img src="deal3.jpg" alt="Deal 3">
-                    <h3>Product 3</h3>
-                    <p>Discounted Price: $15</p>
+            <div class="container">
+                <h2 class="section-title">Our Best Deals</h2>
+                <div class="deals-grid">
+                    <div class="deal-item">
+                        <img src="deal1.jpg" alt="Deal 1">
+                        <h3>Product 1</h3>
+                        <p>Discounted Price: $10</p>
+                    </div>
+                    <div class="deal-item">
+                        <img src="deal2.jpg" alt="Deal 2">
+                        <h3>Product 2</h3>
+                        <p>Discounted Price: $20</p>
+                    </div>
+                    <div class="deal-item">
+                        <img src="deal3.jpg" alt="Deal 3">
+                        <h3>Product 3</h3>
+                        <p>Discounted Price: $15</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <h2>Contact Us</h2>
-            <form id="contactForm">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <form id="contactForm" class="contact-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
         </section>
     </main>
 
@@ -160,37 +299,54 @@
     <script>
         console.log('Welcome to Greens Deals!');
 
-        // Smooth scrolling
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - 80, // Adjust for fixed header
                     behavior: 'smooth'
                 });
             });
         });
 
-        // Form validation
+        // Form submission handling with Formspree
         document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
             var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
 
             if (!name || !email || !message) {
                 alert('Please fill out all fields.');
-                event.preventDefault();
-            } else if (!validateEmail(email)) {
-                alert('Please enter a valid email address.');
-                event.preventDefault();
             } else {
-                alert('Thank you for your message!');
+                var formData = {
+                    name: name,
+                    email: email,
+                    message: message
+                };
+
+                // Using Formspree for form submission
+                fetch('https://formspree.io/your-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Message sent successfully! We will get back to you soon.');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Oops! Something went wrong. Please try again later.');
+                });
             }
         });
-
-        function validateEmail(email) {
-            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
     </script>
 </body>
 </html>
